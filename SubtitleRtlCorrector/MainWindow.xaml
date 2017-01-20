@@ -1,0 +1,70 @@
+﻿<Window x:Class="SubtitleRtlCorrector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:SubtitleRtlCorrector.ViewModel"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel,IsDesignTimeCreatable=False}"        
+        Title="{DynamicResource KeyMainFormHeader}" 
+        FlowDirection="{DynamicResource KeyFlowDirection}"
+        Height="400" Width="700"
+        WindowStyle="SingleBorderWindow"
+        ShowInTaskbar="True"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource {x:Type Window}}"
+        >
+    <Grid Margin="10">
+        <DockPanel LastChildFill="True">
+            <Label Content="{DynamicResource KeySpecialChars}" DockPanel.Dock="Top"/>
+            <TextBox x:Name="txtSpecialChars" Text="{Binding SpecialChars,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" FontFamily="Tahoma" ToolTip="{DynamicResource KeySpecialCharsToolTip}" Margin="0,0,0,5" DockPanel.Dock="Top"/>
+
+            <TabControl>
+                <TabItem Header="{DynamicResource KeyEditorTabHeader}">
+                    <DockPanel LastChildFill="True">
+                        <Grid DockPanel.Dock="Bottom">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75*" />
+                                <ColumnDefinition Width="25*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="{DynamicResource KeyCopyToClipBoard}" Command="{Binding CopyToClipBoardCommand}" Margin="0,10,5,0" Grid.Column="0" ToolTip="{DynamicResource KeyCopyToClipBoardToolTip}"/>
+                            <Button Content="{DynamicResource KeyClearEditor}" Command="{Binding ClearEditorCommand}" Margin="5,10,0,0" Grid.Column="1" ToolTip="{DynamicResource KeyClearEditorToolTip}"/>
+                        </Grid>
+                        <TextBox Text="{Binding EditorText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" FontFamily="Tahoma" FontSize="14" FlowDirection="RightToLeft" />
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="{DynamicResource KeyEditorTabHeader}">
+                    <StackPanel>
+                        <Label Content="{DynamicResource KeySubtitleFile}"></Label>
+                        <DockPanel LastChildFill="True">
+                            <Button Command="{Binding BrowseFileCommand}" Content="{DynamicResource KeyBrowseFile}" />
+                            <TextBox Text="{Binding FileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" IsReadOnly="True"/>
+                        </DockPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75*" />
+                                <ColumnDefinition Width="25*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="{DynamicResource KeyCorrectAndSave}" Command="{Binding CorrectAndSaveFileCommand}" Margin="0,10,5,0" Grid.Column="0" ToolTip="{DynamicResource KeyCorrectAndSaveToolTip}"/>
+                            <Button Content="{DynamicResource KeyResetFileChanges}" Command="{Binding ResetFileChangesCommand}" Margin="5,10,0,0" Grid.Column="1" ToolTip="{DynamicResource KeyResetFileChangesToolTip}"/>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="{DynamicResource KeyOptionTabHeader}">
+                    <StackPanel Orientation="Horizontal" Height="30">
+                        <TextBlock Margin="5" Text="{DynamicResource KeySelectLanguage}" />
+                        <ComboBox x:Name="LanguageComboBox"
+			          Width="150"
+			          Margin="5"
+			          HorizontalAlignment="Left"
+			          DisplayMemberPath="Name"
+			          ItemsSource="{Binding LanguageList}"
+			          SelectedItem="{Binding SelectedLanguage,
+			                                 Mode=TwoWay}"
+			          SelectionChanged="LanguageComboBox_SelectionChanged" />
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

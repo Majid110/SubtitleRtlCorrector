@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleRtlCorrector", "SubtitleRtlCorrector\SubtitleRtlCorrector.csproj", "{23D075D6-7EE2-40DE-BB57-4FC6368F90D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleCorrectorEngine", "SubtitleCorrectorEngine\SubtitleCorrectorEngine.csproj", "{F1B67AED-4E38-4D64-96E3-1020DB8E789C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleCorrectorTest", "SubtitleCorrectorTest\SubtitleCorrectorTest.csproj", "{40576BC5-77FA-452C-8701-3FB7491759BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleCorrector.Resources", "SubtitleCorrector.Resources\SubtitleCorrector.Resources.csproj", "{93DF2CB1-0922-4FD9-9FF2-71C3E57C49BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23D075D6-7EE2-40DE-BB57-4FC6368F90D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23D075D6-7EE2-40DE-BB57-4FC6368F90D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23D075D6-7EE2-40DE-BB57-4FC6368F90D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23D075D6-7EE2-40DE-BB57-4FC6368F90D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B67AED-4E38-4D64-96E3-1020DB8E789C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B67AED-4E38-4D64-96E3-1020DB8E789C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B67AED-4E38-4D64-96E3-1020DB8E789C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B67AED-4E38-4D64-96E3-1020DB8E789C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40576BC5-77FA-452C-8701-3FB7491759BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40576BC5-77FA-452C-8701-3FB7491759BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40576BC5-77FA-452C-8701-3FB7491759BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40576BC5-77FA-452C-8701-3FB7491759BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93DF2CB1-0922-4FD9-9FF2-71C3E57C49BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93DF2CB1-0922-4FD9-9FF2-71C3E57C49BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93DF2CB1-0922-4FD9-9FF2-71C3E57C49BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93DF2CB1-0922-4FD9-9FF2-71C3E57C49BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

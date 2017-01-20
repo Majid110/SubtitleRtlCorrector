@@ -1,0 +1,28 @@
+﻿<ResourceDictionary x:Class="SubtitleCorrector.Resources.FrenchLanguage"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="d">
+    <s:String x:Key="KeyMainFormHeader">اصلاح راست به چپ در زیرنویس</s:String>
+    <s:String x:Key="KeyEditorTabHeader">ویرایشگر</s:String>
+    <s:String x:Key="KeyFileCorrectorTabHeader">اصلاح فایل</s:String>
+    <s:String x:Key="KeyCopyToClipBoard">کپی به حافظه موقت</s:String>
+    <s:String x:Key="KeyClearEditor">پاک کردن</s:String>
+    <s:String x:Key="KeySubtitleFile">فایل زیرنویس:</s:String>
+    <s:String x:Key="KeyBrowseFile">انتخاب فایل</s:String>
+    <s:String x:Key="KeyCorrectAndSave">تصحیح و ذخیره</s:String>
+    <s:String x:Key="KeyResetFileChanges">لغو تغییرات</s:String>
+    <s:String x:Key="KeySpecialChars">علائم نگارشی:</s:String>
+    <s:String x:Key="KeyOptionTabHeader">تنظیمات</s:String>
+    <s:String x:Key="KeySelectLanguage">انتخاب زبان:</s:String>
+    <s:String x:Key="KeySpecialCharsToolTip">علائم مورد استفاده در آخر جملات را بدون فاصله وارد کنید</s:String>
+    <s:String x:Key="KeyCopyToClipBoardToolTip">کپی کردن متن اصلاح شده ویرایشگر به حافظه موقت</s:String>
+    <s:String x:Key="KeyClearEditorToolTip">پاک کردن ویرایشگر</s:String>
+    <s:String x:Key="KeyCorrectAndSaveToolTip">تصحیح نمایش علائم به صورت راست به چپ و ذخیره تغییرات در فایل جدید</s:String>
+    <s:String x:Key="KeyResetFileChangesToolTip">لغو تغییرات اعمال شده توسط نرم‌افزار و برگرداندن فایل به حالت قبل</s:String>
+    
+    <FlowDirection x:Key="KeyFlowDirection">RightToLeft</FlowDirection>
+    
+</ResourceDictionary>
