@@ -33,7 +33,7 @@
                         <TextBox Text="{Binding EditorText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" FontFamily="Tahoma" FontSize="14" FlowDirection="RightToLeft" />
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="{DynamicResource KeyEditorTabHeader}">
+                <TabItem Header="{DynamicResource KeyFileCorrectorTabHeader}">
                     <StackPanel>
                         <Label Content="{DynamicResource KeySubtitleFile}"></Label>
                         <DockPanel LastChildFill="True">
