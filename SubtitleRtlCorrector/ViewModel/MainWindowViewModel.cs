@@ -13,16 +13,21 @@ using SubtitleRtlCorrector.Model;
 
 namespace SubtitleRtlCorrector.ViewModel
 {
-	public class MainWindowViewModel : ViewModelBase
-	{
-		public MainWindowViewModel()
-		{
-			LoadResources();
-		    createCommands();
-			SelectedLanguage = LanguageList.FirstOrDefault(x => x.Code == Thread.CurrentThread.CurrentCulture.Name);
-			PreviousLanguage = SelectedLanguage;
-		    SpecialChars = AppConfigHelper.Instance.SpecialChars;
-		}
+    public class MainWindowViewModel : ViewModelBase
+    {
+        public MainWindowViewModel()
+        {
+            LoadResources();
+            createCommands();
+            SelectedLanguage = LanguageList.FirstOrDefault(x => x.Code == Thread.CurrentThread.CurrentCulture.Name);
+            PreviousLanguage = SelectedLanguage;
+            SpecialChars = AppConfigHelper.Instance.SpecialChars;
+            StickyChars = AppConfigHelper.Instance.StickyChars;
+            StartingBrackets = AppConfigHelper.Instance.StartingBracketChars;
+            EndingBrackets = AppConfigHelper.Instance.EndingBracketChars;
+            CorrectRtl = true;
+            CorrectSpaces = true;
+        }
 
         #region Properties
 
@@ -33,82 +38,140 @@ namespace SubtitleRtlCorrector.ViewModel
         public RelayCommand ResetFileChangesCommand { get; private set; }
 
         private List<Languages> _languageList;
-		public List<Languages> LanguageList
-		{
-			get { return _languageList; }
-			set
-			{
-				_languageList = value;
-				RaisePropertyChanged(() => LanguageList);
-			}
-		}
+        public List<Languages> LanguageList
+        {
+            get { return _languageList; }
+            set
+            {
+                _languageList = value;
+                RaisePropertyChanged(() => LanguageList);
+            }
+        }
 
-		private Languages _selectedLanguage;
-		public Languages SelectedLanguage
-		{
-			get { return _selectedLanguage; }
-			set
-			{
-				_selectedLanguage = value;
+        private Languages _selectedLanguage;
+        public Languages SelectedLanguage
+        {
+            get { return _selectedLanguage; }
+            set
+            {
+                _selectedLanguage = value;
                 RaisePropertyChanged(() => SelectedLanguage);
-			}
-		}
+            }
+        }
 
-		private Languages _previousLanguage;
-	    public Languages PreviousLanguage
-		{
-			get { return _previousLanguage; }
-			set
-			{
-				_previousLanguage = value;
-				RaisePropertyChanged(() => PreviousLanguage);
-			}
-		}
+        private Languages _previousLanguage;
+        public Languages PreviousLanguage
+        {
+            get { return _previousLanguage; }
+            set
+            {
+                _previousLanguage = value;
+                RaisePropertyChanged(() => PreviousLanguage);
+            }
+        }
 
         private string _fileText;
-	    public string FileText
-	    {
-	        get { return _fileText; }
-	        set
-	        {
-	            _fileText = value;
+        public string FileText
+        {
+            get { return _fileText; }
+            set
+            {
+                _fileText = value;
                 RaisePropertyChanged(() => FileText);
-	        }
-	    }
+            }
+        }
 
         private string _specialChars;
         public string SpecialChars
-	    {
-	        get { return _specialChars; }
-	        set
-	        {
-	            _specialChars = value;
-	            AppConfigHelper.Instance.SpecialChars = _specialChars;
+        {
+            get { return _specialChars; }
+            set
+            {
+                _specialChars = value;
+                AppConfigHelper.Instance.SpecialChars = _specialChars;
                 RaisePropertyChanged(() => SpecialChars);
-	        }
-	    }
+            }
+        }
 
-	    private string _editorText;
-	    public string EditorText
-	    {
-	        get { return _editorText; }
-	        set
-	        {
-	            _editorText = value;
+        private string _stickyChars;
+        public string StickyChars
+        {
+            get { return _stickyChars; }
+            set
+            {
+                _stickyChars = value;
+                AppConfigHelper.Instance.StickyChars = _stickyChars;
+                RaisePropertyChanged(() => StickyChars);
+            }
+        }
+
+        private string _editorText;
+        public string EditorText
+        {
+            get { return _editorText; }
+            set
+            {
+                _editorText = value;
                 RaisePropertyChanged(() => EditorText);
-	        }
-	    }
+            }
+        }
 
         private string _fileName;
         public string FileName
-	    {
-	        get { return _fileName; }
-	        set
-	        {
-	            _fileName = value;
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
                 RaisePropertyChanged(() => FileName);
-	        }
-	    }
+            }
+        }
+
+        private string _startingBrackets;
+        public string StartingBrackets
+        {
+            get { return _startingBrackets; }
+            set
+            {
+                _startingBrackets = value;
+                AppConfigHelper.Instance.StartingBracketChars = _startingBrackets;
+                RaisePropertyChanged(() => StartingBrackets);
+            }
+        }
+
+        private string _endingBrackets;
+        public string EndingBrackets
+        {
+            get { return _endingBrackets; }
+            set
+            {
+                _endingBrackets = value;
+                AppConfigHelper.Instance.EndingBracketChars = _endingBrackets;
+                RaisePropertyChanged(() => EndingBrackets);
+            }
+        }
+
+        private bool _correctRtl;
+        public bool CorrectRtl
+        {
+            get { return _correctRtl; }
+            set
+            {
+                _correctRtl = value;
+                RaisePropertyChanged(() => CorrectRtl);
+            }
+        }
+
+        private bool _correctSpaces;
+        public bool CorrectSpaces
+        {
+            get { return _correctSpaces; }
+            set
+            {
+                _correctSpaces = value;
+                RaisePropertyChanged(() => CorrectSpaces);
+            }
+        }
 
         #endregion
 
@@ -132,17 +195,17 @@ namespace SubtitleRtlCorrector.ViewModel
             ResetFileChangesCommand = new RelayCommand(resetFileChanges, canCorrectAndSave);
         }
 
-	    private bool canCorrectAndSave()
-	    {
-	        return !string.IsNullOrEmpty(FileName);
-	    }
+        private bool canCorrectAndSave()
+        {
+            return !string.IsNullOrEmpty(FileName);
+        }
 
-	    private bool canClear()
-	    {
-	        return !string.IsNullOrEmpty(EditorText);
-	    }
+        private bool canClear()
+        {
+            return !string.IsNullOrEmpty(EditorText);
+        }
 
-	    private bool canCopy()
+        private bool canCopy()
         {
             return !string.IsNullOrEmpty(_editorText);
         }
@@ -151,10 +214,18 @@ namespace SubtitleRtlCorrector.ViewModel
         {
             var txtEditorText = _editorText;
             if (string.IsNullOrEmpty(txtEditorText)) return;
-            var chars = string.IsNullOrEmpty(_specialChars) ? null : _specialChars;
-            var core = new CorrectorCore(txtEditorText, chars);
+            var correctOption = new CorrectOption()
+            {
+                SpecialChars = SpecialChars,
+                StickyChars = StickyChars,
+                StartingBracketChars = StartingBrackets,
+                EndingBracketChars = EndingBrackets,
+                CorrectRtl = this.CorrectRtl,
+                CorrectSpaces = this.CorrectSpaces
+            };
+            var core = new CorrectorCore(txtEditorText, correctOption);
             var corrected = core.ResetChanges();
-            core = new CorrectorCore(corrected, chars);
+            core = new CorrectorCore(corrected, correctOption);
             corrected = core.Correct();
             Clipboard.SetText(corrected);
         }
@@ -163,7 +234,7 @@ namespace SubtitleRtlCorrector.ViewModel
         {
             if (checkFileName()) return;
             var fileText = File.ReadAllText(FileName);
-            var core = new CorrectorCore(fileText, SpecialChars);
+            var core = new CorrectorCore(fileText, new CorrectOption());
             var reseted = core.ResetChanges();
             saveNewFile(reseted);
         }
@@ -172,9 +243,19 @@ namespace SubtitleRtlCorrector.ViewModel
         {
             if (checkFileName()) return;
             var fileText = File.ReadAllText(_fileName);
-            var core = new CorrectorCore(fileText, SpecialChars, ".ass");
+            var correctOption = new CorrectOption()
+            {
+                SpecialChars = SpecialChars,
+                StickyChars = StickyChars,
+                StartingBracketChars = StartingBrackets,
+                EndingBracketChars = EndingBrackets,
+                FileExt = ".ass",
+                CorrectRtl = this.CorrectRtl,
+                CorrectSpaces = this.CorrectSpaces
+            };
+            var core = new CorrectorCore(fileText, correctOption);
             var corrected = core.ResetChanges();
-            core = new CorrectorCore(corrected, SpecialChars, ".ass");
+            core = new CorrectorCore(corrected, correctOption);
             corrected = core.Correct();
             saveNewFile(corrected);
         }

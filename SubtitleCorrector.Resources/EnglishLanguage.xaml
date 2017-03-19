@@ -13,8 +13,9 @@
     <s:String x:Key="KeySubtitleFile">Subtitle File:</s:String>
     <s:String x:Key="KeyBrowseFile">Browse File</s:String>
     <s:String x:Key="KeyCorrectAndSave">Correct And Save</s:String>
-    <s:String x:Key="KeyResetFileChanges">Reset Changes</s:String>
+    <s:String x:Key="KeyResetFileChanges">Reset RTL Changes</s:String>
     <s:String x:Key="KeySpecialChars">Special Characters:</s:String>
+    <s:String x:Key="KeyStickyChars">Sticky Characters:</s:String>
     <s:String x:Key="KeyOptionTabHeader">Options</s:String>
     <s:String x:Key="KeySelectLanguage">Select Language:</s:String>
     <s:String x:Key="KeySpecialCharsToolTip">ّInsert special characters here</s:String>
@@ -22,6 +23,11 @@
     <s:String x:Key="KeyClearEditorToolTip">Clear editor text</s:String>
     <s:String x:Key="KeyCorrectAndSaveToolTip">Correct RTL's special characters display problem and save changes to new file</s:String>
     <s:String x:Key="KeyResetFileChangesToolTip">Reset all previous changes and save edited file</s:String>
+    <s:String x:Key="KeyStartingBrackets">Starting Brackets:</s:String>
+    <s:String x:Key="KeyEndingBrackets">Endings Brackets:</s:String>
+    <s:String x:Key="KeyCorrectRtl">Correct RTL</s:String>
+    <s:String x:Key="KeyCorrectSpaces">Correct spaces</s:String>
+    
     
     <FlowDirection x:Key="KeyFlowDirection">LeftToRight</FlowDirection>
 </ResourceDictionary>

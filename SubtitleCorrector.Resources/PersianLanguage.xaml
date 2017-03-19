@@ -13,8 +13,9 @@
     <s:String x:Key="KeySubtitleFile">فایل زیرنویس:</s:String>
     <s:String x:Key="KeyBrowseFile">انتخاب فایل</s:String>
     <s:String x:Key="KeyCorrectAndSave">تصحیح و ذخیره</s:String>
-    <s:String x:Key="KeyResetFileChanges">لغو تغییرات</s:String>
+    <s:String x:Key="KeyResetFileChanges">لغو تغییرات راست به چپ</s:String>
     <s:String x:Key="KeySpecialChars">علائم نگارشی:</s:String>
+    <s:String x:Key="KeyStickyChars">علائم چسبنده:</s:String>
     <s:String x:Key="KeyOptionTabHeader">تنظیمات</s:String>
     <s:String x:Key="KeySelectLanguage">انتخاب زبان:</s:String>
     <s:String x:Key="KeySpecialCharsToolTip">علائم مورد استفاده در آخر جملات را بدون فاصله وارد کنید</s:String>
@@ -22,7 +23,10 @@
     <s:String x:Key="KeyClearEditorToolTip">پاک کردن ویرایشگر</s:String>
     <s:String x:Key="KeyCorrectAndSaveToolTip">تصحیح نمایش علائم به صورت راست به چپ و ذخیره تغییرات در فایل جدید</s:String>
     <s:String x:Key="KeyResetFileChangesToolTip">لغو تغییرات اعمال شده توسط نرم‌افزار و برگرداندن فایل به حالت قبل</s:String>
-    
+    <s:String x:Key="KeyStartingBrackets">شروع براکت‌ها:</s:String>
+    <s:String x:Key="KeyEndingBrackets">پایان براکت‌ها:</s:String>
+    <s:String x:Key="KeyCorrectRtl">اصلاح راست‌به‌چپ</s:String>
+    <s:String x:Key="KeyCorrectSpaces">اصلاح فاصله‌ها</s:String>
     <FlowDirection x:Key="KeyFlowDirection">RightToLeft</FlowDirection>
     
 </ResourceDictionary>

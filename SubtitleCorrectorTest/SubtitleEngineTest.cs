@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SubtitleCorrectorEngine;
+using Extensions = SubtitleCorrectorEngine.Extensions;
 
 namespace SubtitleCorrectorTest
 {
@@ -7,44 +8,74 @@ namespace SubtitleCorrectorTest
     public class SubtitleEngineTest
     {
 
-        private string subtitleText =
-@"
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,AlHurraTxtlight,80,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
-
-[Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:02.16,0:00:03.78,Default,,0,0,0,,سلام علیکم.
-Dialogue: 0,0:00:05.16,0:00:07.18,Default,,0,0,0,,بسم الله , الرحمن الرحيم
-Dialogue: 0,0:00:05.16,0:00:07.18,Default,,0,0,0,,بنام خداوند. شما خوب هستید؟ متشکرم!
-";
-
-//        [Test]
-//        public void Test_Corrector()
-//        {
-//            var s = File.ReadAllText(@"D:\test.ass");
-//            var core = new CorrectorCore(s);
-//            var corrected = core.Correct();
-//            File.WriteAllText(@"D:\new.ass", corrected, Encoding.UTF8);
-//            Assert.IsNotEmpty(corrected);
-//        }
-
         [Test]
-        public void Test_Remove_Space_After_Last_Char()
+        public void Test_Remove_Double_Spaces()
         {
-            Assert.AreEqual("asdf.", CorrectorCore.RemoveSpaceBeforeLastCharacter("asdf."));
-            Assert.AreEqual("asdf.", CorrectorCore.RemoveSpaceBeforeLastCharacter("asdf ."));
-            Assert.AreEqual("asdf.", CorrectorCore.RemoveSpaceBeforeLastCharacter("asdf  ."));
-            Assert.AreEqual("asdf.", CorrectorCore.RemoveSpaceBeforeLastCharacter("asdf   ."));
-            Assert.AreEqual("as. df.", CorrectorCore.RemoveSpaceBeforeLastCharacter("as. df ."));
-            Assert.AreEqual("as . df.", CorrectorCore.RemoveSpaceBeforeLastCharacter("as . df ."));
-            Assert.AreEqual("as  . df.", CorrectorCore.RemoveSpaceBeforeLastCharacter("as  . df  ."));
-
-            Assert.AreEqual("سلام.", CorrectorCore.RemoveSpaceBeforeLastCharacter("سلام."));
-            Assert.AreEqual("سلام.", CorrectorCore.RemoveSpaceBeforeLastCharacter("سلام ."));
-            Assert.AreEqual("سلام.", CorrectorCore.RemoveSpaceBeforeLastCharacter("سلام  ."));
+            Assert.AreEqual("asdf .", "asdf  .".RemoveDoubleSpace());
+            Assert.AreEqual("asdf .", "asdf   .".RemoveDoubleSpace());
+            Assert.AreEqual("asdf .", "asdf    .".RemoveDoubleSpace());
+            Assert.AreEqual(" asdf.", "  asdf.".RemoveDoubleSpace());
+            Assert.AreEqual(" asdf.", "   asdf.".RemoveDoubleSpace());
+            Assert.AreEqual(" asdf. ", "  asdf. ".RemoveDoubleSpace());
+            Assert.AreEqual(" asdf. ", "  asdf.  ".RemoveDoubleSpace());
+            Assert.AreEqual(" as df. ", "  as  df.  ".RemoveDoubleSpace());
+            Assert.AreEqual(" as df. ", "  as   df.  ".RemoveDoubleSpace());
         }
 
+        [Test]
+        public void Test_Remove_Space_Before_Sticky_Char()
+        {
+            Assert.AreEqual("This is a test.", "This is a test .".RemoveSpacesBeforeStickyChars());
+            Assert.AreEqual("This is a test.", "This is a test  .".RemoveSpacesBeforeStickyChars());
+            Assert.AreEqual("This is a test.", "This is a test   .".RemoveSpacesBeforeStickyChars());
+            Assert.AreEqual("This, is a test.", "This , is a test   .".RemoveSpacesBeforeStickyChars());
+            Assert.AreEqual("This, is a test.", "This  , is a test.".RemoveSpacesBeforeStickyChars());
+            Assert.AreEqual(".,،?؟:؛!;", " . , ، ? ؟ : ؛ ! ;".RemoveSpacesBeforeStickyChars());
+        }
+
+        [Test]
+        public void Test_Add_Space_After_Sticky_Char()
+        {
+            Assert.AreEqual("This, is a test.", "This,is a test.".AddRequiredSpaceAfterStickyChars());
+            Assert.AreEqual("This, is; a test;", "This,is;a test;".AddRequiredSpaceAfterStickyChars());
+            Assert.AreEqual("This, is; a، test;", "This,is;a،test;".AddRequiredSpaceAfterStickyChars());
+            Assert.AreEqual(". , ، ? ؟ : ؛ ! ;", ".,،?؟:؛!;".AddRequiredSpaceAfterStickyChars());
+        }
+
+        [Test]
+        public void Test_Add_Space_Before_Starting_Brackets()
+        {
+            Assert.AreEqual("This is (test ).", "This is(test ).".AddRequiredSpaceBeforeStartingBrackets());
+            Assert.AreEqual("This is (test).", "This is(test).".AddRequiredSpaceBeforeStartingBrackets());
+            Assert.AreEqual("This [is] {for} ((test)).", "This[is]{for}((test)).".AddRequiredSpaceBeforeStartingBrackets());
+            Assert.AreEqual("({[<«", "({[<«".AddRequiredSpaceBeforeStartingBrackets());
+        }
+
+        [Test]
+        public void Test_Remove_Space_After_Starting_Brackets()
+        {
+            Assert.AreEqual("This is (test ).", "This is ( test ).".RemoveSpaceAfterStartingBrackets());
+            Assert.AreEqual("This is(test).", "This is( test).".RemoveSpaceAfterStartingBrackets());
+            Assert.AreEqual("This is ((test)).", "This is ( (test)).".RemoveSpaceAfterStartingBrackets());
+            Assert.AreEqual("({[<«", "( { [ < « ".RemoveSpaceAfterStartingBrackets());
+        }
+
+        [Test]
+        public void Test_Remove_Space_Before_Ending_Brackets()
+        {
+            Assert.AreEqual("This is (test).", "This is (test ).".RemoveSpaceBeforeEndingBrackets());
+            Assert.AreEqual("This is(test).", "This is(test ).".RemoveSpaceBeforeEndingBrackets());
+            Assert.AreEqual("This is ((test)).", "This is ((test ) ).".RemoveSpaceBeforeEndingBrackets());
+            Assert.AreEqual(")}]>»", " ) } ] > »".RemoveSpaceBeforeEndingBrackets());
+        }
+
+        [Test]
+        public void Test_Add_Space_After_Ending_Brackets()
+        {
+            Assert.AreEqual("This [is] (test).", "This [is](test).".AddRequiredSpaceAfterEndingBrackets());
+            Assert.AreEqual("This[is] (test).", "This[is](test).".AddRequiredSpaceAfterEndingBrackets());
+            Assert.AreEqual("This [is] {for} ((test)).", "This [is]{for}((test)).".AddRequiredSpaceAfterEndingBrackets());
+            Assert.AreEqual(")}]>»", ")}]>»".AddRequiredSpaceAfterEndingBrackets());
+        }
     }
 }

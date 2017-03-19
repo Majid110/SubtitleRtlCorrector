@@ -67,6 +67,7 @@ namespace SubtitleRtlCorrector
 
         private void App_OnExit(object sender, ExitEventArgs e)
         {
+            AppConfigHelper.Instance.AppVersion = AppConfig.CurrentVersion;
             AppConfigHelper.Instance.SelectedLanguage = Thread.CurrentThread.CurrentCulture.Name;
             AppConfigHelper.SaveConfig(AppConfigHelper.Instance);
         }

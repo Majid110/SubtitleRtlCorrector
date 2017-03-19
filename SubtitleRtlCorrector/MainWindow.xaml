@@ -8,7 +8,7 @@
         d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel,IsDesignTimeCreatable=False}"        
         Title="{DynamicResource KeyMainFormHeader}" 
         FlowDirection="{DynamicResource KeyFlowDirection}"
-        Height="400" Width="700"
+        Height="450" Width="700"
         WindowStyle="SingleBorderWindow"
         ShowInTaskbar="True"
         WindowStartupLocation="CenterScreen"
@@ -16,9 +16,10 @@
         >
     <Grid Margin="10">
         <DockPanel LastChildFill="True">
-            <Label Content="{DynamicResource KeySpecialChars}" DockPanel.Dock="Top"/>
-            <TextBox x:Name="txtSpecialChars" Text="{Binding SpecialChars,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" FontFamily="Tahoma" ToolTip="{DynamicResource KeySpecialCharsToolTip}" Margin="0,0,0,5" DockPanel.Dock="Top"/>
-
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <CheckBox Content="{DynamicResource KeyCorrectRtl}" IsChecked="{Binding CorrectRtl}" Margin="0,0,20,0"/>
+                <CheckBox Content="{DynamicResource KeyCorrectSpaces}" IsChecked="{Binding CorrectSpaces}" />
+            </StackPanel>
             <TabControl>
                 <TabItem Header="{DynamicResource KeyEditorTabHeader}">
                     <DockPanel LastChildFill="True">
@@ -51,18 +52,41 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="{DynamicResource KeyOptionTabHeader}">
-                    <StackPanel Orientation="Horizontal" Height="30">
-                        <TextBlock Margin="5" Text="{DynamicResource KeySelectLanguage}" />
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{DynamicResource KeySpecialChars}" Grid.Row="0" Grid.Column="0"/>
+                        <TextBox Text="{Binding SpecialChars,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" FontFamily="Tahoma" ToolTip="{DynamicResource KeySpecialCharsToolTip}" Grid.Row="0" Grid.Column="1"/>
+
+                        <Label Content="{DynamicResource KeyStickyChars}" Grid.Row="1" Grid.Column="0"/>
+                        <TextBox Text="{Binding StickyChars,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" FontFamily="Tahoma" ToolTip="{DynamicResource KeySpecialCharsToolTip}" Grid.Row="1" Grid.Column="1"/>
+                        
+                        <Label Content="{DynamicResource KeyStartingBrackets}" Grid.Row="2" Grid.Column="0"/>
+                        <TextBox Text="{Binding StartingBrackets,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" FontFamily="Tahoma" ToolTip="{DynamicResource KeySpecialCharsToolTip}" Grid.Row="2" Grid.Column="1"/>
+
+                        <Label Content="{DynamicResource KeyEndingBrackets}" Grid.Row="3" Grid.Column="0"/>
+                        <TextBox Text="{Binding EndingBrackets,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FlowDirection="LeftToRight" FontFamily="Tahoma" ToolTip="{DynamicResource KeySpecialCharsToolTip}" Grid.Row="3" Grid.Column="1"/>
+
+                        <Label Content="{DynamicResource KeySelectLanguage}" Grid.Row="4" Grid.Column="0"/>
                         <ComboBox x:Name="LanguageComboBox"
-			          Width="150"
-			          Margin="5"
-			          HorizontalAlignment="Left"
-			          DisplayMemberPath="Name"
-			          ItemsSource="{Binding LanguageList}"
-			          SelectedItem="{Binding SelectedLanguage,
-			                                 Mode=TwoWay}"
-			          SelectionChanged="LanguageComboBox_SelectionChanged" />
-                    </StackPanel>
+			                Width="150"
+			                Margin="2"
+			                HorizontalAlignment="Left"
+			                DisplayMemberPath="Name"
+			                ItemsSource="{Binding LanguageList}"
+			                SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+			                SelectionChanged="LanguageComboBox_SelectionChanged" Grid.Row="4" Grid.Column="1"/>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </DockPanel>

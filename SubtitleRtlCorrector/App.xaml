@@ -15,6 +15,9 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Background" Value="WhiteSmoke" />
             </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="2" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
