@@ -15,4 +15,4 @@ SubtitleRtlCorrector corrects display problem for Right-To-Left subtitle files. 
 ![SubtitleRtlCorrector Persian](subtitlertlcorrector_fa.png)
 
 
-You can download it from [here](https://github.com/Majid110/SubtitleRtlCorrector/releases)
+You can download it [from here](https://github.com/Majid110/SubtitleRtlCorrector/releases)
