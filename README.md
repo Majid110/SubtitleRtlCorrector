@@ -1,5 +1,5 @@
 # SubtitleRtlCorrector
-Correct display problem of characters in Right-To-Left subtitle files.
+SubtitleRtlCorrector corrects display problem for Right-To-Left subtitle files. Edit
 
 ## Key features:
 * Automatically adds RTL Embeding character before every special character.
