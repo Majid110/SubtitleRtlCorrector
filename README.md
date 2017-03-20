@@ -9,10 +9,9 @@ SubtitleRtlCorrector corrects display problem for Right-To-Left subtitle files. 
 * Specialy designed for display RTL text correctly in [Aegisub](http://www.aegisub.org/) subtitle editor.
 * Multi language (Persian and English).
 
+You can download it [from here](https://github.com/Majid110/SubtitleRtlCorrector/releases)
+
 ## Screenshots:
 ![SubtitleRtlCorrector English](subtitlertlcorrector_en.png)
 
 ![SubtitleRtlCorrector Persian](subtitlertlcorrector_fa.png)
-
-
-You can download it [from here](https://github.com/Majid110/SubtitleRtlCorrector/releases)
