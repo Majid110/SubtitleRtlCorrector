@@ -14,9 +14,12 @@ namespace SubtitleCorrectorEngine
             var chars = specialChars ?? DefaultSpecialChars;
             var pattern = $@"([{chars}])";
             var rleChar = (char)0x202B;
+            var pdfChar = (char)0x202C;
 
-            var replaced = Regex.Replace(s, pattern, m => rleChar + m.Groups[1].Value);
-            return replaced;
+            var replaced = Regex.Replace(s, pattern, m => string.Format("{0}{1}{2}{0}{1}", pdfChar, rleChar, m.Groups[1].Value));
+            replaced = replaced.Replace(@"\\N", @"\\N" + rleChar);
+
+            return rleChar + replaced;
         }
 
         public static string RemoveDoubleSpace(this string s)

@@ -52,7 +52,8 @@ namespace SubtitleCorrectorEngine
         public string ResetChanges()
         {
             var s = Regex.Replace(_text, @"[\u202B]+", string.Empty); //Removes Right-To-Left Embeding character
-            return Regex.Replace(s, @"[\u200F]+", string.Empty); //Removes Right-To-Left Mark charcter
+            s = Regex.Replace(s, @"[\u200F]+", string.Empty); //Removes Right-To-Left Mark charcter
+            return Regex.Replace(s, @"[\u202C]+", string.Empty); //Removes POP DIRECTIONAL FORMATTING (PDF) charcter
         }
     }
 }
